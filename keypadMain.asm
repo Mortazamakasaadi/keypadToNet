@@ -1,18 +1,18 @@
-    ;===============================================================;
-    ;								    ;
-    ;			  Mortaza Mak Asaadi			    ;
-    ;								    ;
-    ;								    ;
-    ;===============================================================;
+     ;===============================================================;
+     ;								     ;
+     ;			  Mortaza Mak Asaadi			     ;
+     ;								     ;
+     ;								     ;
+     ;===============================================================;
     
-;--------------------------------------------------------------------------------config
+;--------------------------------------------------------------------------------configs
 LIST 	p=pic18f452,f=inhx32,n=0,st=off,r=hex
 CONFIG 	osc=hs,oscs=off,wdt=off,pwrt=on,bor=off
 CONFIG 	debug=off,lvp=off,stvr=off
 ;--------------------------------------------------------------------------------include
 #include "/usr/share/gputils/header/p18f452.inc"
-;--------------------------------------------------------------------------------definitions
-keypadP	EQU PORTB
+;--------------------------------------------------------------------------------definitions&aliases
+keypadP	EQU PORTB								
 keypadT	EQU TRISB
 
 keypadState EQU 0x25
@@ -21,19 +21,22 @@ delayOuter EQU 0x26
 delayOut EQU 0x27
 delayIn EQU 0x28
 ;--------------------------------------------------------------------------------program starts here
-main:		ORG 0x00	
-		
+main:		ORG 0x00							;writing over intrupt table
+										;we don't need it anyway
+										;fornow...
+										;hell-yeah! more space!!!
+										
 ;--------------------------------------------------------------------------------setting up serial port
-		MOVLW 0x20  
-		MOVWF TXSTA ;enable send on serial
+		MOVLW 0x20							
+		MOVWF TXSTA							;enable send on serial
 		MOVLW 0x19
-		MOVWF SPBRG ;set serial speed
-		BCF TRISC,TX	;enable TX as output 
-		BSF RCSTA,SPEN  ;enable serial
+		MOVWF SPBRG							;set serial speed
+		BCF TRISC,TX							;enable TX as output 
+		BSF RCSTA,SPEN							;enable serial
 		
 startOver:
 ;--------------------------------------------------------------------------------reading keypad upper nibble
-		MOVLW 0xf0
+		MOVLW 0xf0							;iiiixxxx
 		MOVWF keypadT
 		NOP
 		MOVLW 0x0f
@@ -45,7 +48,7 @@ startOver:
 		MOVWF keypadState
 
 ;--------------------------------------------------------------------------------reading keypad lower nibble
-		MOVLW 0x0f
+		MOVLW 0x0f							;xxxxiiii
 		MOVWF keypadT
 		NOP
 		MOVLW 0xf0
@@ -57,10 +60,10 @@ startOver:
 		IORWF keypadState
 
 ;--------------------------------------------------------------------------------check keyState and send serial
-		
-if1:		MOVLW 0x11
-		CPFSEQ keypadState
-		BRA if2
+										;only if one key pressed
+if1:		MOVLW 0x11							;for now ofcourse
+		CPFSEQ keypadState						;next improvement:
+		BRA if2								;enable multikey press
 		MOVLW A'A'
 		CALL TRANS
 
@@ -155,18 +158,16 @@ if16:		MOVLW 0x88
 		CALL TRANS
 	over:	CALL DELAY
 		GOTO  startOver
-
-;-----------------------------------------------------------------------------transmit data to serial port		
-TRANS:
+;--------------------------------------------------------------------------------transmit function		
+TRANS:										;transmits data to serial
 	sendAgain:  BTFSS PIR1,TXIF
 		    BRA sendAgain
 		    MOVWF TXREG
 		    RETURN
-
-;------------------------------------------------------------------------------start of delay function		    
-DELAY:		    MOVLW 0x03
-		    MOVWF delayOuter
-	AGAIN:	    MOVLW 0xff
+;--------------------------------------------------------------------------------delay function		    
+DELAY:		    MOVLW 0x03							;creates roughly 
+		    MOVWF delayOuter						;255*255*3*(1/4MHZ)s
+	AGAIN:	    MOVLW 0xff							;delay running on 16MHZ
 		    MOVWF delayOut
 	AGAIN1:	    MOVLW 0xff
 		    MOVWF delayIn
@@ -181,5 +182,5 @@ DELAY:		    MOVLW 0x03
 		    RETURN
 		    
 ;--------------------------------------------------------------------------------end of program
-END
+END										;Bye-Bye ;D
 		  
