@@ -155,13 +155,15 @@ if16:		MOVLW 0x88
 		CALL TRANS
 	over:	CALL DELAY
 		GOTO  startOver
-		
+
+;-----------------------------------------------------------------------------transmit data to serial port		
 TRANS:
 	sendAgain:  BTFSS PIR1,TXIF
 		    BRA sendAgain
 		    MOVWF TXREG
 		    RETURN
-		    
+
+;------------------------------------------------------------------------------start of delay function		    
 DELAY:		    MOVLW 0x03
 		    MOVWF delayOuter
 	AGAIN:	    MOVLW 0xff
