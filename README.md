@@ -5,8 +5,10 @@ Where every file belong:
 
 PIC18F452: 
 	--keypadMain.asm
+
 Local: 
 	--keypadToNet.py
+
 Server: 
 	--css
 	--img
