@@ -1,7 +1,7 @@
 Here we are trying to send data(last pressed key) from pic connected computer to network and fetching that data 
 using ajax and showing them dynamicly on client side browser.
 
-Where every file/folder belong:
+Where every file/folder belongs:
 
 PIC18F452: 
 
