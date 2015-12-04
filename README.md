@@ -3,11 +3,11 @@ using ajax and showing them dynamicly on client side browser.
 
 Where every file belong:
 
-PIC18F452:
+PIC18F452: 
 	--keypadMain.asm
-Local:
+Local: 
 	--keypadToNet.py
-Server:
+Server: 
 	--css
 	--img
 	--jquery-ui-1.11.4
