@@ -58,7 +58,7 @@ try:
         if data == b' ':
             print(colored("Connection down...",'red'))
 
-        elif data==b'A' or data==b'B' or data==b'C' or data==b'D' or \
+        if data==b'A' or data==b'B' or data==b'C' or data==b'D' or \
         data==b'E' or data==b'F' or data==b'G' or data==b'H' or \
         data==b'I' or data==b'J' or data==b'K' or data==b'L' or \
         data==b'M' or data==b'N' or data==b'O' or data==b'P':
