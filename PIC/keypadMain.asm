@@ -15,11 +15,20 @@ CONFIG 	debug=off,lvp=off,stvr=off
 keypadP	EQU PORTB								
 keypadT	EQU TRISB
 
-keypadState EQU 0x25
+keypadState EQU 0x20
 
-delayOuter  EQU 0x26
-delayOut    EQU 0x27
-delayIn	    EQU 0x28
+delayOuter  EQU 0x21
+delayOut    EQU 0x22
+delayIn	    EQU 0x23
+
+sixteenHandler EQU 0x24
+outerLoopControll EQU 0x25
+innerLoopControll EQU 0x26
+ 
+numL EQU 0x27
+numH EQU 0x28
+numComplete EQU 0x29
+
 ;--------------------------------------------------------------------------------program starts here
 main:		ORG 0x00							;writing over intrupt table
 										;we don't need it anyway
@@ -61,123 +70,46 @@ startOver:
 
 ;--------------------------------------------------------------------------------check keyState and send serial
 										;Multi key enabled :D
-if1:		MOVLW 0x11;00010001						
+		MOVLW 0x00
+		MOVWF sixteenHandler
+		MOVLW 0x04
+		MOVWF outerLoopControll
+		MOVLW 0x80
+		MOVWF numL
+		MOVLW 0x08
+		MOVWF numH
+		  
+    outerLoop:	
+		RLNCF numL
+		MOVLW 0x04
+		MOVWF innerLoopControll
+    innerLoop:	
+		RLNCF numH
+		MOVF numH,W
+		IORWF numL,W
+		MOVWF numComplete
 		ANDWF keypadState,W
-		SUBLW 0x11
-		BNZ if2	
-		MOVLW A'A'
+		SUBWF numComplete,W
+		BNZ noTrasmit
 		CALL TRANS
+    noTrasmit:	INCF sixteenHandler
+		MOVF numH,W
+		SUBLW 0x80
+		BNZ numHNot
+		MOVLW 0x08
+		MOVWF numH
+    numHNot:	DECF innerLoopControll
+		BNZ innerLoop
+		DECF outerLoopControll
+		BNZ outerLoop
+		   
+		CALL DELAY
+		BRA  startOver
 
-if2:		MOVLW 0x21;00100001
-		ANDWF keypadState,W
-		SUBLW 0x21
-		BNZ if3
-		MOVLW A'B'
-		CALL TRANS
-
-if3:		MOVLW 0x41;01000001
-		ANDWF keypadState,W
-		SUBLW 0x41
-		BNZ if4
-		MOVLW A'C'
-		CALL TRANS
-
-if4:		MOVLW 0x81;10000001
-		ANDWF keypadState,W
-		SUBLW 0x81
-		BNZ if5
-		MOVLW A'D'
-		CALL TRANS
-
-if5:		MOVLW 0x12;00010010
-		ANDWF keypadState,W
-		SUBLW 0x12
-		BNZ if6
-		MOVLW A'E'
-		CALL TRANS
-
-if6:		MOVLW 0x22;00100010
-		ANDWF keypadState,W
-		SUBLW 0x22
-		BNZ if7
-		MOVLW A'F'
-		CALL TRANS
-
-if7:	    	MOVLW 0x42;01000010
-		ANDWF keypadState,W
-		SUBLW 0x42
-		BNZ if8
-		MOVLW A'G'
-		CALL TRANS
-
-
-if8:		MOVLW 0x82;10000010
-		ANDWF keypadState,W
-		SUBLW 0x82
-		BNZ if9
-		MOVLW A'H'
-		CALL TRANS
-
-
-if9:		MOVLW 0x14;00010100
-		ANDWF keypadState,W
-		SUBLW 0x14
-		BNZ if10
-		MOVLW A'I'
-		CALL TRANS
-
-if10:		MOVLW 0x24;00100100
-		ANDWF keypadState,W
-		SUBLW 0x24
-		BNZ if11
-		MOVLW A'J'
-		CALL TRANS
-
-if11:	    	MOVLW 0x44;01000100
-		ANDWF keypadState,W
-		SUBLW 0x44
-		BNZ if12
-		MOVLW A'K'
-		CALL TRANS
-
-if12:	    	MOVLW 0x84;10000100
-		ANDWF keypadState,W
-		SUBLW 0x84
-		BNZ if13
-		MOVLW A'L'
-		CALL TRANS
-
-if13:		MOVLW 0x18;00011000
-		ANDWF keypadState,W
-		SUBLW 0x18
-		BNZ if14
-		MOVLW A'M'
-		CALL TRANS
-
-if14:		MOVLW 0x28;00101000
-		ANDWF keypadState,W
-		SUBLW 0x28
-		BNZ if15
-		MOVLW A'N'
-		CALL TRANS
-
-if15:		MOVLW 0x48;01001000
-		ANDWF keypadState,W
-		SUBLW 0x48
-		BNZ if16
-		MOVLW A'O'
-		CALL TRANS
-
-if16:		MOVLW 0x88;10001000
-		ANDWF keypadState,W
-		SUBLW 0x88
-		BNZ over
-		MOVLW A'P'
-		CALL TRANS
-	over:	CALL DELAY
-		GOTO  startOver
 ;--------------------------------------------------------------------------------transmit function		
-TRANS:										;transmits data to serial
+TRANS:		    
+		    MOVLW A'A'
+		    ADDWF sixteenHandler,W					;transmits data to serial
 	sendAgain:  BTFSS PIR1,TXIF						;don't care if none connected
 		    BRA sendAgain						;bytes cashed...
 		    MOVWF TXREG							;problem! :(

@@ -1,11 +1,11 @@
 MPLINK 5.08, LINKER
-Linker Map File - Created Sun Dec  6 00:41:17 2015
+Linker Map File - Created Sun Dec  6 15:57:31 2015
 
                                  Section Info
                   Section       Type    Address   Location Size(Bytes)
                 ---------  ---------  ---------  ---------  ---------
-                   .org_0       code   0x000000    program   0x000142
-                   .cinit    romdata   0x000142    program   0x000002
+                   .org_0       code   0x000000    program   0x0000a0
+                   .cinit    romdata   0x0000a0    program   0x000002
 .config_300001_BUILD/DEFAULT/PRODUCTION/KEYPADM    romdata   0x300001    program   0x000001
 .config_300002_BUILD/DEFAULT/PRODUCTION/KEYPADM    romdata   0x300002    program   0x000001
 .config_300003_BUILD/DEFAULT/PRODUCTION/KEYPADM    romdata   0x300003    program   0x000001
@@ -16,40 +16,27 @@ Linker Map File - Created Sun Dec  6 00:41:17 2015
                               Program Memory Usage 
                                Start         End      
                            ---------   ---------      
-                            0x000000    0x000143      
+                            0x000000    0x0000a1      
                             0x300001    0x300003      
                             0x300006    0x300006      
-            328 out of 33048 program addresses used, program memory utilization is 0%
+            166 out of 33048 program addresses used, program memory utilization is 0%
 
 
 
                               Symbols - Sorted by Name
                      Name    Address   Location    Storage File                     
                 ---------  ---------  ---------  --------- ---------                
-                    AGAIN   0x000128    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                   AGAIN1   0x00012c    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                    DELAY   0x000124    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                     HERE   0x000130    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                    TRANS   0x00011c    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                      if1   0x000034    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                     if10   0x0000b2    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                     if11   0x0000c0    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                     if12   0x0000ce    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                     if13   0x0000dc    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                     if14   0x0000ea    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                     if15   0x0000f8    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                     if16   0x000106    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                      if2   0x000042    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                      if3   0x000050    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                      if4   0x00005e    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                      if5   0x00006c    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                      if6   0x00007a    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                      if7   0x000088    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                      if8   0x000096    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                      if9   0x0000a4    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
+                    AGAIN   0x000086    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
+                   AGAIN1   0x00008a    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
+                    DELAY   0x000082    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
+                     HERE   0x00008e    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
+                    TRANS   0x000076    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
+                innerLoop   0x00004a    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
                      main   0x000000    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                     over   0x000114    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                sendAgain   0x00011c    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
+                noTrasmit   0x00005c    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
+                  numHNot   0x000068    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
+                outerLoop   0x000044    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
+                sendAgain   0x00007a    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
                 startOver   0x00000c    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
 
 
@@ -59,28 +46,15 @@ Linker Map File - Created Sun Dec  6 00:41:17 2015
                 ---------  ---------  ---------  --------- ---------                
                      main   0x000000    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
                 startOver   0x00000c    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                      if1   0x000034    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                      if2   0x000042    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                      if3   0x000050    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                      if4   0x00005e    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                      if5   0x00006c    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                      if6   0x00007a    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                      if7   0x000088    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                      if8   0x000096    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                      if9   0x0000a4    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                     if10   0x0000b2    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                     if11   0x0000c0    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                     if12   0x0000ce    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                     if13   0x0000dc    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                     if14   0x0000ea    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                     if15   0x0000f8    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                     if16   0x000106    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                     over   0x000114    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                    TRANS   0x00011c    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                sendAgain   0x00011c    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                    DELAY   0x000124    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                    AGAIN   0x000128    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                   AGAIN1   0x00012c    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
-                     HERE   0x000130    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
+                outerLoop   0x000044    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
+                innerLoop   0x00004a    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
+                noTrasmit   0x00005c    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
+                  numHNot   0x000068    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
+                    TRANS   0x000076    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
+                sendAgain   0x00007a    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
+                    DELAY   0x000082    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
+                    AGAIN   0x000086    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
+                   AGAIN1   0x00008a    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
+                     HERE   0x00008e    program     static /home/mak/Projects/mplab/keypadExp/keypadAsm.X/keypadMain.asm
 
 
