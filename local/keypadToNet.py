@@ -3,7 +3,28 @@ import bluetooth
 import socket
 from os import system
 from termcolor import colored
+
 server_address = "98:D3:31:90:12:02"
+
+dicNum={
+    b'A':'1',
+    b'B':'2',
+    b'C':'3',
+    b'D':'A',
+    b'E':'4',
+    b'F':'5',
+    b'G':'6',
+    b'H':'B',
+    b'I':'7',
+    b'J':'8',
+    b'K':'9',
+    b'L':'C',
+    b'M':'*',
+    b'N':'0',
+    b'O':'#',
+    b'P':'D'
+}
+
 # port = get_available_port( RFCOMM )
 # noinspection PyBroadException
 try:
@@ -53,7 +74,7 @@ try:
             print(colored("Bluetooth Disconnected.",'red'))
             exit(1)
         else:
-            print(colored(repr(data)[1:]+" recieved.",'green'))
+            print(colored(repr(dicNum[data])+" recieved.",'green'))
 
         if data == b' ':
             print(colored("Connection down...",'red'))
