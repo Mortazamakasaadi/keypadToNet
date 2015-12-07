@@ -79,11 +79,7 @@ try:
         if data == b' ':
             print(colored("Connection down...",'red'))
 
-        if data==b'A' or data==b'B' or data==b'C' or data==b'D' or \
-        data==b'E' or data==b'F' or data==b'G' or data==b'H' or \
-        data==b'I' or data==b'J' or data==b'K' or data==b'L' or \
-        data==b'M' or data==b'N' or data==b'O' or data==b'P':
-
+        else:
             client('127.0.0.1', 3077, data)
 
             if data == b'A':
@@ -101,7 +97,7 @@ try:
             elif data == b'G':
                 print(repr(data))
             elif data == b'H':
-                print(repr(data))
+                system("clementine --volume-up")
             elif data == b'I':
                 print(repr(data))
             elif data == b'J':
@@ -109,15 +105,15 @@ try:
             elif data == b'K':
                 print(repr(data))
             elif data == b'L':
-                print(repr(data))
+                system("clementine --volume-down")
             elif data == b'M':
-                print(repr(data))
+                system("clementine --restart-or-previous")
             elif data == b'N':
-                print(repr(data))
+                system("clementine --seek-by -5")
             elif data == b'O':
-                print(repr(data))
+                system("clementine --seek-by 5")
             elif data == b'P':
-                print(repr(data))
+                system("clementine -o")
 
     sockBluetooth.close()
     sockBluetooth = None
